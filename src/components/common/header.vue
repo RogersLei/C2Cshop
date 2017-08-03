@@ -39,12 +39,16 @@
             <button class="btn btn-primary" @click="register">注册</button>
           </div>
           <div class="navbar-form navbar-right" v-else>
-
+            <img src="" alt="">
+            <span>当前用户为{{name}}</span>
+            <span>会员等级为{{level}}</span>
+            <button class="btn btn-primary" @click="">退出</button>
           </div>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <login v-if="showLogin" :a="isNotLogin"></login>
+    <login v-if="showLogin" :isNotLogin="isNotLogin"
+      @changeStatus="changeStatus"></login>
     <register v-if="showRegister"></register>
     <admin v-if="showAdmin"></admin>
   </div>
@@ -59,7 +63,9 @@
         showAdmin: false,
         showLogin: false,
         showRegister: false,
-        isNotLogin: true
+        isNotLogin: true,
+        name: '张三',
+        level:3
       }
     },
     components:{
@@ -85,6 +91,10 @@
         setTimeout(function () {
           $('#admin').modal({backdrop: 'static'});
         },0)
+      },
+      'changeStatus': function (msg) {
+        // console.log(msg)
+        this.isNotLogin = msg
       }
     }
   }

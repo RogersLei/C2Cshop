@@ -40,13 +40,15 @@
 <script>
 export default{
 //  name: login
-  props:['a'],
+  props: [
+    'isNotLogin'
+  ],
   methods:{
     submit:function () {
-      console.log(isNotLogin)  //验证发送请求
-      this.$emit('isNotLogin',false)
+      //console.log(this.isNotLogin)  //验证发送请求
+      this.$emit('changeStatus',false) //父事件+值
 
-      location.href = "/?#/"
+      // location.href = "/?#/"
       // location.reload()
     }
   }
